@@ -19,10 +19,11 @@ public class Order extends CategoryOrder {
     @Column(name = "image")
     private String img;
 
+    @Lob
     @Column(name = "description")
     private String description;
 
     @ManyToOne
-    @JoinTable(name = "category_id")
+    @JoinColumn(name = "category_id")
     private Category category;
 }

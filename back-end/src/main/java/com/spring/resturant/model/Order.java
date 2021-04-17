@@ -10,7 +10,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name ="orderfood")
+@Table(name ="orders")
 public class Order extends CategoryOrder {
 
     @Column(name = "price")
@@ -24,6 +24,6 @@ public class Order extends CategoryOrder {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "id_category")
     private Category category;
 }

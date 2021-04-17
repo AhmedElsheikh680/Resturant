@@ -20,11 +20,11 @@ public class CategoryOrder extends  BaseEntity{
     private String name;
 
     @CreationTimestamp
-    @Column(name = "data_created")
+    @Column(name = "data_create")
     private Date dataCreated;
 
     @UpdateTimestamp
-    @Column(name = "data_updated")
+    @Column(name = "data_update")
     private Date dataUpdated;
 
 }

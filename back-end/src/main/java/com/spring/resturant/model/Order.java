@@ -1,10 +1,6 @@
 package com.spring.resturant.model;
 
-public class Order {
-
-    private Long id;
-
-    private String name;
+public class Order extends CategoryOrder {
 
     private int price;
 

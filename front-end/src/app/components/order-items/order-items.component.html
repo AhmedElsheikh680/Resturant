@@ -1,1 +1,11 @@
-<p>order-items works!</p>
+<div class="row">
+  <div *ngFor="let temOrder of orders" class="col-md-4 myorder">
+    <div class="card order-item">
+      <img src="assets/img/{{temOrder.img}}.jpg" alt="Denim Jeans" style="width:100%">
+      <h1>{{ temOrder.name }}</h1>
+      <p class="price"> {{ temOrder.price }}</p>
+      <p class="dis"> {{ temOrder.description }}</p>
+      <button class="btn btn-primary myButton">Add to Cart</button>
+    </div>
+  </div>
+</div>

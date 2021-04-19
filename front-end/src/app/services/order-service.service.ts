@@ -9,11 +9,20 @@ import {map} from 'rxjs/operators';
 })
 export class OrderServiceService {
 
-  private baseUrl =`http://localhost:8080/api/v1/orders`;
+  private baseUrl =`http://localhost:8080/api/v1`;
+
   constructor(private httpClient: HttpClient) { }
 
   getOrders(): Observable<Order[]> {
-    return this.httpClient.get<Order[]>(this.baseUrl).pipe(
+    return this.httpClient.get<Order[]>(this.baseUrl+`/orders`).pipe(
+      map(
+        response => response
+      )
+    )
+  }
+
+  getOrdersByCategoryId(id):Observable<Order[]> {
+    return this.httpClient.get<Order[]>(this.baseUrl+`/category/${id}`).pipe(
       map(
         response => response
       )

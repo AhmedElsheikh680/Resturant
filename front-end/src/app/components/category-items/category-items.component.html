@@ -1,10 +1,10 @@
 <ul>
-  <li class="active"><a href="index.html"><i class="bx bx-home"></i> <span>Home</span></a></li>
+  <li  routerLinkActive="active"><a routerLink="orders"><i class="bx bx-home"></i> <span>Home</span></a></li>
 
 
 
-  <li *ngFor="let tempCategory of categories">
-    <a href="#about">
+  <li routerLinkActive="active" *ngFor="let tempCategory of categories">
+    <a routerLink="category/{{ tempCategory.id }}">
       <i class="{{ tempCategory.logo}}"></i>
       <span>{{ tempCategory.name }}</span>
     </a>

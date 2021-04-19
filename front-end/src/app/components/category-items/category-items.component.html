@@ -5,7 +5,7 @@
 
   <li *ngFor="let tempCategory of categories">
     <a href="#about">
-      <i class="fas fa-utensils"></i>
+      <i class="{{ tempCategory.logo}}"></i>
       <span>{{ tempCategory.name }}</span>
     </a>
   </li>

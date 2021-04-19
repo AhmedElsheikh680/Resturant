@@ -12,6 +12,10 @@ import java.util.List;
 public class OrderService {
     private final OrderRepo orderRepo;
 
+    public List<Order> getOrdersByCategoryId(Long id){
+        return orderRepo.findByCategoryId(id);
+    }
+
     public List<Order> getAllOrders() {
         return orderRepo.findAll();
     }

@@ -9,7 +9,7 @@ import {map} from 'rxjs/operators';
 })
 export class OrderServiceService {
 
-  private baseUrl ='http://localhost:8080/api/v1/orders';
+  private baseUrl =`http://localhost:8080/api/v1/orders`;
   constructor(private httpClient: HttpClient) { }
 
   getOrders(): Observable<Order[]> {

@@ -24,4 +24,9 @@ public class OrderController {
     public List<Order> getOrdersByCategoryId(@PathVariable Long id){
         return orderService.getOrdersByCategoryId(id);
     }
+
+    @GetMapping("/orderkey/{name}")
+    public List<Order> getOrdersByKeyName(@PathVariable  String name){
+        return orderService.getOrdersByKeyName(name);
+    }
 }

@@ -16,6 +16,10 @@ public class OrderService {
         return orderRepo.findByCategoryId(id);
     }
 
+    public List<Order> getOrdersByKeyName(String name){
+        return orderRepo.findByNameContaining(name);
+    }
+
     public List<Order> getAllOrders() {
         return orderRepo.findAll();
     }

@@ -1,0 +1,32 @@
+<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+  <a routerLinkActive="menu-active" *ngFor="let temp of categories" class="dropdown-item" routerLink="category/{{temp.id}}">
+    <i class="{{temp.logo}}"></i> {{temp.name}}
+  </a>
+  <!--
+  <a class="dropdown-item" href="#">Action</a>
+  <a class="dropdown-item" href="#">Another action</a>
+  <div class="dropdown-divider"></div>
+  <a class="dropdown-item" href="#">Something else here</a>
+  -->
+</div>
+
+
+
+<!--<li class="nav-item dropdown">-->
+<!--  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--    Categories-->
+<!--  </a>-->
+<!--  <div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+
+
+<!--    <a  routerLinkActive="menu-active" *ngFor="let tempCategory of categories" class="dropdown-item" routerLink="category/{{ tempCategory.id}}">-->
+<!--      <i class="{{ tempCategory.logo}}"></i> {{ tempCategory.name}}-->
+<!--    </a>-->
+
+
+<!--&lt;!&ndash;    <a class="dropdown-item" href="#">Another action</a>&ndash;&gt;-->
+<!--&lt;!&ndash;    <div class="dropdown-divider"></div>&ndash;&gt;-->
+<!--&lt;!&ndash;    <a class="dropdown-item" href="#">Something else here</a>&ndash;&gt;-->
+<!--  </div>-->
+<!--</li>-->

@@ -17,20 +17,21 @@ export class OrderItemsComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(
       () => {
-        this.finishOrders();
+        this.finshOrders();
       }
     )
 
+
   }
-  finishOrders(){
+  finshOrders(){
     let result = this.route.snapshot.paramMap.has('id');
     if(result){
       this.getOrdersByCategoryId();
     }else {
       this.getOrders()
-
     }
   }
+
   getOrders(){
     this.orderService.getOrders().subscribe(
       data => {
@@ -38,13 +39,13 @@ export class OrderItemsComponent implements OnInit {
       }
     )
   }
+
   getOrdersByCategoryId(){
     let categoryId = this.route.snapshot.paramMap.get('id');
     this.orderService.getOrdersByCategoryId(categoryId).subscribe(
       data => {
-        this.orders = data
+        this.orders = data;
       }
     )
   }
-
 }

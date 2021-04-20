@@ -21,11 +21,11 @@ export class OrderServiceService {
     )
   }
 
-  getOrdersByCategoryId(id):Observable<Order[]> {
+getOrdersByCategoryId(id):Observable<Order[]>{
     return this.httpClient.get<Order[]>(this.baseUrl+`/category/${id}`).pipe(
       map(
         response => response
       )
     )
-  }
+}
 }

@@ -6,26 +6,26 @@ import {HttpClientModule} from '@angular/common/http';
 import { OrderItemsComponent } from './components/order-items/order-items.component';
 import { CategoryItemsComponent } from './components/category-items/category-items.component';
 import {RouterModule, Routes} from '@angular/router';
-
-
+import { DropdownMenuComponent } from './components/dropdown-menu/dropdown-menu.component';
 //http://localhost:4200/
-const routes:Routes = [
+const routes: Routes = [
   //http://localhost:4200/category
-   { path: 'category', component: OrderItemsComponent},
+  { path: 'category', component: OrderItemsComponent },
   //http://localhost:4200/category/{id}
-  { path: 'category/:id', component: OrderItemsComponent},
+  { path: 'category/:id', component: OrderItemsComponent },
   //http://localhost:4200/orders
-  { path:'orders', component: OrderItemsComponent},
-  //http://localhost:4200/
-  { path: '', redirectTo:'/orders', pathMatch: 'full'},
-  //http://localhost:4200/fklkfdfkl
-  { path: '**', redirectTo: '/orders', pathMatch: 'full'}
+  { path: 'orders', component: OrderItemsComponent },
+  { path: '', redirectTo: '/orders', pathMatch: 'full'},
+  //http://localhost:4200/jdsj,mds
+  { path: '**', redirectTo: '/orders', pathMatch: 'full' }
 ];
+
 @NgModule({
   declarations: [
     AppComponent,
     OrderItemsComponent,
-    CategoryItemsComponent
+    CategoryItemsComponent,
+    DropdownMenuComponent
   ],
   imports: [
     BrowserModule,

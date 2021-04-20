@@ -21,11 +21,23 @@ export class OrderServiceService {
     )
   }
 
-getOrdersByCategoryId(id):Observable<Order[]>{
-    return this.httpClient.get<Order[]>(this.baseUrl+`/category/${id}`).pipe(
+  getOrdersByCategoryId(id):Observable<Order[]>{
+      return this.httpClient.get<Order[]>(this.baseUrl+`/category/${id}`).pipe(
+        map(
+          response => response
+        )
+      )
+  }
+
+  getOrdersByKeyName(keyName):Observable<Order[]>{
+    return  this.httpClient.get<Order[]>(this.baseUrl+`/orderkey/${keyName}`);
+  }
+
+  getOrderById(id): Observable<Order>{
+    return  this.httpClient.get<Order>(this.baseUrl+`/order/${id}`).pipe(
       map(
         response => response
       )
     )
-}
+  }
 }

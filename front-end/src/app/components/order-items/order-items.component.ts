@@ -24,9 +24,12 @@ export class OrderItemsComponent implements OnInit {
 
   }
   finshOrders(){
-    let result = this.route.snapshot.paramMap.has('id');
-    if(result){
+    let result1 = this.route.snapshot.paramMap.has('id');
+    let result2 = this.route.snapshot.paramMap.has('keyname');
+    if(result1){
       this.getOrdersByCategoryId();
+    }else if(result2){
+      this.getOrdersBySearchName();
     }else {
       this.getOrders()
     }
@@ -45,6 +48,16 @@ export class OrderItemsComponent implements OnInit {
     this.orderService.getOrdersByCategoryId(categoryId).subscribe(
       data => {
         this.orders = data;
+      }
+    )
+  }
+
+  private getOrdersBySearchName() {
+    let keyName = this.route.snapshot.paramMap.get('keyname');
+
+    this.orderService.getOrdersByKeyName(keyName).subscribe(
+      data => {
+        this.orders = data
       }
     )
   }

@@ -1,8 +1,14 @@
 <div class="row">
   <div *ngFor="let temOrder of orders" class="col-md-4 myorder">
     <div class="card order-item">
-      <img src="assets/img/{{temOrder.img}}.jpg" alt="Denim Jeans" style="width:100%">
-      <h1>{{ temOrder.name }}</h1>
+      <a routerLink="/order/{{temOrder.id}}">
+        <img src="assets/img/{{temOrder.img}}.jpg" alt="Denim Jeans" style="width:100%">
+
+      </a>
+      <a routerLink="/order/{{ temOrder.id}}">
+        <h1>{{ temOrder.name }}</h1>
+
+      </a>
       <p class="price"> {{ temOrder.price | currency: 'USD' }}</p>
 <!--      <p class="dis"> {{ temOrder.description }}</p>-->
       <button class="btn btn-primary myButton">Add to Cart</button>

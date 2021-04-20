@@ -20,6 +20,10 @@ public class OrderService {
         return orderRepo.findByNameContaining(name);
     }
 
+    public Order getOrderById(Long id){
+        return orderRepo.findById(id).get();
+    }
+
     public List<Order> getAllOrders() {
         return orderRepo.findAll();
     }

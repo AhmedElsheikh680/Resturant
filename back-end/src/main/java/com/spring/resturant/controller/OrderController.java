@@ -25,8 +25,15 @@ public class OrderController {
         return orderService.getOrdersByCategoryId(id);
     }
 
+    // http://localhost:8080/api/v1/orderkey/key
     @GetMapping("/orderkey/{name}")
     public List<Order> getOrdersByKeyName(@PathVariable  String name){
         return orderService.getOrdersByKeyName(name);
+    }
+
+    // http://localhost:8080/api/v1/order/{id}
+    @GetMapping("/order/{id}")
+    public Order getOrderById(@PathVariable Long id){
+        return orderService.getOrderById(id);
     }
 }

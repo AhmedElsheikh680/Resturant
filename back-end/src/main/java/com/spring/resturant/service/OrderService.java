@@ -32,4 +32,27 @@ public class OrderService {
         Pageable pageable = PageRequest.of(page, size);
         return orderRepo.findAll(pageable).getContent();
     }
+
+    public long getOrdersSize(){
+        return orderRepo.count();
+    }
+
+    public long getOrdersSizeByCategoryId(Long id){
+        return orderRepo.getOrdersSizeByCategoryId(id);
+    }
+
+    public long getOrdersSizeByKeyName(String name){
+        return orderRepo.getOrdersSizeByKeyName(name);
+    }
+
+
+
+
+
+
+
+
+
+
+
 }

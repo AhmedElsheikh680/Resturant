@@ -13,7 +13,7 @@ import java.util.List;
 public class OrderController {
 
     private final OrderService orderService;
-    // http://localhost:8080/api/v1/orders
+    // http://localhost:8080/api/v1/orders?page=page
     @GetMapping("/orders")
     public List<Order> getAllOrders(@RequestParam int page, @RequestParam int size){
         return orderService.getAllOrders(page, size);
@@ -37,5 +37,22 @@ public class OrderController {
     public Order getOrderById(@PathVariable Long id){
 
         return orderService.getOrderById(id);
+    }
+
+    // http://localhost:8080/api/v1/ordersSize
+    @GetMapping("/ordersSize")
+    public long getOrdersSize(){
+        return orderService.getOrdersSize();
+    }
+
+    // http://localhost:8080/api/v1/categoryIdSize
+    @GetMapping("/categoryIdSize/{id}")
+    public long getOrdersSizeByCategoryId(@PathVariable Long id){
+        return orderService.getOrdersSizeByCategoryId(id);
+    }
+
+    @GetMapping("/ordersSizeKeyName/{name}")
+    public long getOrdersSizeByKeyName(@PathVariable String name){
+        return orderService.getOrdersSizeByKeyName(name);
     }
 }

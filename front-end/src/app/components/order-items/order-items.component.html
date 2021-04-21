@@ -19,9 +19,10 @@
 <!-- Pagination -->
 <div class="col-md-9 pag" style="padding-left: 30%">
   <ngb-pagination
-
-                [pageSize]="50"
-                [collectionSize]="200"
+                [(page)]="page"
+                [pageSize]="pageSize"
+                [collectionSize]="collectionSize"
+                (pageChange)="changePage()"
 
   >
 

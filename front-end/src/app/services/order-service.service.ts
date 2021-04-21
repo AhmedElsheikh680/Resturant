@@ -13,24 +13,24 @@ export class OrderServiceService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getOrders(): Observable<Order[]> {
-    return this.httpClient.get<Order[]>(this.baseUrl+`/orders`).pipe(
+  getOrders(page, size): Observable<Order[]> {
+    return this.httpClient.get<Order[]>(this.baseUrl+`/orders?page=${page}&size=${size}`).pipe(
       map(
         response => response
       )
     )
   }
 
-  getOrdersByCategoryId(id):Observable<Order[]>{
-      return this.httpClient.get<Order[]>(this.baseUrl+`/category/${id}`).pipe(
+  getOrdersByCategoryId(id, page, size):Observable<Order[]>{
+      return this.httpClient.get<Order[]>(this.baseUrl+`/category/${id}?page=${page}&size=${size}`).pipe(
         map(
           response => response
         )
       )
   }
 
-  getOrdersByKeyName(keyName):Observable<Order[]>{
-    return  this.httpClient.get<Order[]>(this.baseUrl+`/orderkey/${keyName}`);
+  getOrdersByKeyName(keyName, page, size):Observable<Order[]>{
+    return  this.httpClient.get<Order[]>(this.baseUrl+`/orderkey/${keyName}?page=${page}&size=${size}`);
   }
 
   getOrderById(id): Observable<Order>{

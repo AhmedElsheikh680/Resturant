@@ -12,8 +12,8 @@ export class OrderItemsComponent implements OnInit {
 
   orders: Order[]  = [];
   page: number=1;
-  pageSize: number=20;
-  collectionSize: number=200;
+  pageSize: number=5;
+  collectionSize: number=0;
   constructor(private orderService: OrderServiceService,
               private route: ActivatedRoute) { }
 
@@ -39,6 +39,11 @@ export class OrderItemsComponent implements OnInit {
   }
 
   getOrders(){
+    this.orderService.getOrdersSize().subscribe(
+      data => {
+        this.collectionSize = data
+      }
+    )
     this.orderService.getOrders(this.page -1, this.pageSize).subscribe(
       data => {
         this.orders = data
@@ -48,6 +53,11 @@ export class OrderItemsComponent implements OnInit {
 
   getOrdersByCategoryId(){
     let categoryId = this.route.snapshot.paramMap.get('id');
+    this.orderService.getOrdersSizeByCategoryId(categoryId).subscribe(
+      data => {
+        this.collectionSize = data
+      }
+    )
     this.orderService.getOrdersByCategoryId(categoryId, this.page - 1, this.pageSize).subscribe(
       data => {
         this.orders = data;
@@ -57,7 +67,11 @@ export class OrderItemsComponent implements OnInit {
 
   private getOrdersBySearchName() {
     let keyName = this.route.snapshot.paramMap.get('keyname');
-
+    this.orderService.getOrdersSizeByKeyName(keyName).subscribe(
+      data => {
+        this.collectionSize = data
+      }
+    )
     this.orderService.getOrdersByKeyName(keyName, this .page - 1, this.pageSize).subscribe(
       data => {
         this.orders = data

@@ -40,4 +40,45 @@ export class OrderServiceService {
       )
     )
   }
+
+  getOrdersSize():Observable<number>{
+    return this.httpClient.get<number>(this.baseUrl+`/ordersSize`).pipe(
+      map(
+        response => response
+      )
+    )
+  }
+
+  getOrdersSizeByCategoryId(id):Observable<number>{
+    return this.httpClient.get<number>(this.baseUrl+`/categoryIdSize/${id}`).pipe(
+      map(
+        response => response
+      )
+    )
+  }
+
+  getOrdersSizeByKeyName(name): Observable<number>
+  {
+    return this.httpClient.get<number>(this.baseUrl+`/ordersSizeKeyName/${name}`).pipe(
+      map(
+        response => response
+      )
+    )
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

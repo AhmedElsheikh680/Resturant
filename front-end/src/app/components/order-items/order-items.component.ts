@@ -3,6 +3,7 @@ import {OrderServiceService} from '../../services/order-service.service';
 import {Order} from '../../model/order';
 import {ActivatedRoute} from '@angular/router';
 import {CartOrder} from '../../model/cart-order';
+import {CartServiceService} from '../../services/cart-service.service';
 
 @Component({
   selector: 'app-order-items',
@@ -16,7 +17,8 @@ export class OrderItemsComponent implements OnInit {
   pageSize: number=5;
   collectionSize: number=0;
   constructor(private orderService: OrderServiceService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private cartService: CartServiceService) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(
@@ -90,8 +92,9 @@ export class OrderItemsComponent implements OnInit {
   }
 
   addToCart(temOrder: Order) {
-    const cartOrder =  new CartOrder(temOrder)
-    console.log(cartOrder);
+    const cartOrder =  new CartOrder(temOrder);
+    this.cartService.addOrderToCart(cartOrder);
+
 
   }
 }

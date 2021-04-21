@@ -11,7 +11,7 @@
       </a>
       <p class="price"> {{ temOrder.price | currency: 'USD' }}</p>
 <!--      <p class="dis"> {{ temOrder.description }}</p>-->
-      <button class="btn btn-primary myButton">Add to Cart</button>
+      <button (click)="addToCart(temOrder)" class="btn btn-primary myButton">Add to Cart</button>
     </div>
   </div>
 </div>

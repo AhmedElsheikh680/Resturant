@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {OrderServiceService} from '../../services/order-service.service';
 import {Order} from '../../model/order';
 import {ActivatedRoute} from '@angular/router';
+import {CartOrder} from '../../model/cart-order';
 
 @Component({
   selector: 'app-order-items',
@@ -86,5 +87,11 @@ export class OrderItemsComponent implements OnInit {
   changePageSize(event: Event){
     this.pageSize = +(<HTMLInputElement>event.target).value;
     this.finshOrders();
+  }
+
+  addToCart(temOrder: Order) {
+    const cartOrder =  new CartOrder(temOrder)
+    console.log(cartOrder);
+
   }
 }

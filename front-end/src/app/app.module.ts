@@ -10,6 +10,7 @@ import { DropdownMenuComponent } from './components/dropdown-menu/dropdown-menu.
 import { SearchOrderComponent } from './components/search-order/search-order.component';
 import { OrderDetailsComponent } from './components/order-details/order-details.component';
 import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
+import { CartStatusComponent } from './components/cart-status/cart-status.component';
 //http://localhost:4200/
 const routes: Routes = [
   //http://localhost:4200/category
@@ -35,7 +36,8 @@ const routes: Routes = [
     CategoryItemsComponent,
     DropdownMenuComponent,
     SearchOrderComponent,
-    OrderDetailsComponent
+    OrderDetailsComponent,
+    CartStatusComponent
   ],
   imports: [
     BrowserModule,

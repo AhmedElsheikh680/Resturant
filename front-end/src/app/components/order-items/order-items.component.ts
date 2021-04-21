@@ -82,4 +82,9 @@ export class OrderItemsComponent implements OnInit {
   changePage() {
     this.finshOrders()
   }
+
+  changePageSize(event: Event){
+    this.pageSize = +(<HTMLInputElement>event.target).value;
+    this.finshOrders();
+  }
 }

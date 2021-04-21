@@ -9,6 +9,7 @@ import {RouterModule, Routes} from '@angular/router';
 import { DropdownMenuComponent } from './components/dropdown-menu/dropdown-menu.component';
 import { SearchOrderComponent } from './components/search-order/search-order.component';
 import { OrderDetailsComponent } from './components/order-details/order-details.component';
+import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 //http://localhost:4200/
 const routes: Routes = [
   //http://localhost:4200/category
@@ -39,7 +40,8 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    NgbPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

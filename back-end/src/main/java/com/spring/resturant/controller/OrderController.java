@@ -15,25 +15,27 @@ public class OrderController {
     private final OrderService orderService;
     // http://localhost:8080/api/v1/orders
     @GetMapping("/orders")
-    public List<Order> getAllOrders(){
-        return orderService.getAllOrders();
+    public List<Order> getAllOrders(@RequestParam int page, @RequestParam int size){
+        return orderService.getAllOrders(page, size);
     }
 
     // http://localhost:8080/api/v1/category/{id}
     @GetMapping("/category/{id}")
-    public List<Order> getOrdersByCategoryId(@PathVariable Long id){
-        return orderService.getOrdersByCategoryId(id);
+    public List<Order> getOrdersByCategoryId(@PathVariable Long id, @RequestParam int page, int size){
+
+        return orderService.getOrdersByCategoryId(id, page, size);
     }
 
     // http://localhost:8080/api/v1/orderkey/key
     @GetMapping("/orderkey/{name}")
-    public List<Order> getOrdersByKeyName(@PathVariable  String name){
-        return orderService.getOrdersByKeyName(name);
+    public List<Order> getOrdersByKeyName(@PathVariable  String name, @RequestParam int page, @RequestParam int size){
+        return orderService.getOrdersByKeyName(name, page, size);
     }
 
     // http://localhost:8080/api/v1/order/{id}
     @GetMapping("/order/{id}")
     public Order getOrderById(@PathVariable Long id){
+
         return orderService.getOrderById(id);
     }
 }

@@ -16,18 +16,25 @@ import {PurchasesComponent} from './components/purchases/purchases.component';
 const routes: Routes = [
   //http://localhost:4200/category
   { path: 'category', component: OrderItemsComponent },
+
   //http://localhost:4200/category/{id}
   { path: 'category/:id', component: OrderItemsComponent },
+
   //http://localhost:4200/orders
   { path: 'orders', component: OrderItemsComponent },
+
   //http://localhost:4200/orders/keyname
   { path: 'orders/:keyname', component: OrderItemsComponent },
+
   //http://localhost:4200/order/{id}
   { path: 'order/:id', component: OrderDetailsComponent },
+
   //http://localhost:4200/purchases
   { path: 'purchases', component: PurchasesComponent},
+
   //http://localhost:4200/
   { path: '', redirectTo: '/orders', pathMatch: 'full'},
+
   //http://localhost:4200/jdsj,mds
   { path: '**', redirectTo: '/orders', pathMatch: 'full' }
 ];

@@ -18,4 +18,7 @@ export class PurchasesComponent implements OnInit {
     this.orders = this.casrtService.orders;
   }
 
+  incrementOrder(temp: CartOrder) {
+    this.casrtService.addOrderToCart(temp);
+  }
 }

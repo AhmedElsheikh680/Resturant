@@ -47,4 +47,6 @@ export class CartServiceService {
     console.log(this.totalPrice);
   }
 
+
+
 }

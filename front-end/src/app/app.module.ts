@@ -11,6 +11,7 @@ import { SearchOrderComponent } from './components/search-order/search-order.com
 import { OrderDetailsComponent } from './components/order-details/order-details.component';
 import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 import { CartStatusComponent } from './components/cart-status/cart-status.component';
+import {PurchasesComponent} from './components/purchases/purchases.component';
 //http://localhost:4200/
 const routes: Routes = [
   //http://localhost:4200/category
@@ -23,6 +24,8 @@ const routes: Routes = [
   { path: 'orders/:keyname', component: OrderItemsComponent },
   //http://localhost:4200/order/{id}
   { path: 'order/:id', component: OrderDetailsComponent },
+  //http://localhost:4200/purchases
+  { path: 'purchases', component: PurchasesComponent},
   //http://localhost:4200/
   { path: '', redirectTo: '/orders', pathMatch: 'full'},
   //http://localhost:4200/jdsj,mds
@@ -37,7 +40,8 @@ const routes: Routes = [
     DropdownMenuComponent,
     SearchOrderComponent,
     OrderDetailsComponent,
-    CartStatusComponent
+    CartStatusComponent,
+    PurchasesComponent
   ],
   imports: [
     BrowserModule,

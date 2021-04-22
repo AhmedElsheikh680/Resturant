@@ -8,8 +8,8 @@
       <p class="price">
         <i (click)="incrementOrder(temp)" class="fas fa-plus"></i>
         <span>{{temp.quantity}}</span>
-        <i class="fas fa-minus"></i></p>
-      <button  class="btn btn-primary mybu">Remove</button>
+        <i (click)="decrementOrder(temp)" class="fas fa-minus"></i></p>
+      <button (click)="removeOrder(temp)" class="btn btn-primary mybu">Remove</button>
     </div>
   </div>
 </div>

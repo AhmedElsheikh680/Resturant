@@ -47,6 +47,21 @@ export class CartServiceService {
     console.log(this.totalPrice);
   }
 
+  decrementOrder(order: CartOrder){
+    order.quantity--;
+    if(order.quantity === 0){
+      this.removeOrder(order);
+    }else {
+      this.calculatorTotals();
+    }
+  }
 
 
+   removeOrder(order: CartOrder) {
+    const index = this.orders.findIndex(temp => temp.id === order.id); // index or -1
+    if(index > -1){
+      this.orders.splice(index, 1);
+      this.calculatorTotals();
+    }
+  }
 }

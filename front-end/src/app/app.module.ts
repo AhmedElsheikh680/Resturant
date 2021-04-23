@@ -13,6 +13,7 @@ import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 import { CartStatusComponent } from './components/cart-status/cart-status.component';
 import {PurchasesComponent} from './components/purchases/purchases.component';
 import { CheckOutComponent } from './components/check-out/check-out.component';
+import {ReactiveFormsModule} from '@angular/forms';
 //http://localhost:4200/
 const routes: Routes = [
   //http://localhost:4200/category
@@ -60,7 +61,8 @@ const routes: Routes = [
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
-    NgbPaginationModule
+    NgbPaginationModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

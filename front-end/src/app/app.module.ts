@@ -12,6 +12,7 @@ import { OrderDetailsComponent } from './components/order-details/order-details.
 import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 import { CartStatusComponent } from './components/cart-status/cart-status.component';
 import {PurchasesComponent} from './components/purchases/purchases.component';
+import { CheckOutComponent } from './components/check-out/check-out.component';
 //http://localhost:4200/
 const routes: Routes = [
   //http://localhost:4200/category
@@ -32,6 +33,10 @@ const routes: Routes = [
   //http://localhost:4200/purchases
   { path: 'purchases', component: PurchasesComponent},
 
+  //http://localhost:4200/checkout
+  { path: 'checkout', component:  CheckOutComponent },
+
+
   //http://localhost:4200/
   { path: '', redirectTo: '/orders', pathMatch: 'full'},
 
@@ -48,7 +53,8 @@ const routes: Routes = [
     SearchOrderComponent,
     OrderDetailsComponent,
     CartStatusComponent,
-    PurchasesComponent
+    PurchasesComponent,
+    CheckOutComponent
   ],
   imports: [
     BrowserModule,

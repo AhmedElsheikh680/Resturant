@@ -9,10 +9,14 @@ import {CartServiceService} from '../../services/cart-service.service';
 })
 export class PurchasesComponent implements OnInit {
   orders: CartOrder[] = [];
+  totalOrder: number = 0;
+  totalPrice: number=0;
   constructor(private casrtService: CartServiceService) { }
 
   ngOnInit(): void {
     this.getAllPuchasesOrders();
+    this.getTotals();
+    this.casrtService.calculatorTotals();
   }
   getAllPuchasesOrders(){
     this.orders = this.casrtService.orders;
@@ -28,5 +32,18 @@ export class PurchasesComponent implements OnInit {
 
   removeOrder(temp: CartOrder) {
     this.casrtService.removeOrder(temp);
+  }
+  getTotals(){
+    this.casrtService.totalOrders.subscribe(
+      data => {
+        this.totalOrder = data
+      }
+    )
+    this.casrtService.totalPrice.subscribe(
+      data => {
+        this.totalPrice = data
+      }
+    )
+
   }
 }

@@ -14,6 +14,11 @@ public class StateService {
 
     private final StateRepo stateRepo;
 
+    public List<State> getAllStatesByCountryCode(String code){
+        return stateRepo.findByCountryCode(code);
+    }
+
+
     public List<State> getAllStates(){
         return stateRepo.findAll();
     }

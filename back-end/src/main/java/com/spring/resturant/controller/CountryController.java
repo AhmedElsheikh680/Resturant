@@ -1,12 +1,10 @@
 package com.spring.resturant.controller;
 
 import com.spring.resturant.model.Country;
+import com.spring.resturant.model.State;
 import com.spring.resturant.service.CountryService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,4 +21,7 @@ public class CountryController {
     public List<Country> getAllCountries(){
         return countryService.getAllCountries();
     }
+
+
+
 }

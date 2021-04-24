@@ -3,10 +3,7 @@ package com.spring.resturant.controller;
 import com.spring.resturant.model.State;
 import com.spring.resturant.service.StateService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,5 +19,11 @@ public class StateController {
     @GetMapping("/states")
     public List<State> getAllStates(){
         return stateService.getAllStates();
+    }
+
+    // http://localhost:8080/api/v1/statesByCountryCode/{code}
+    @GetMapping("/statesByCountryCode/{code}")
+    public List<State> getStatesByCountryCodde(@PathVariable String code){
+        return stateService.getAllStatesByCountryCode(code);
     }
 }

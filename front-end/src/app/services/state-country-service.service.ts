@@ -29,4 +29,12 @@ export class StateCountryServiceService {
       )
     )
   }
+
+  getStatesByCountryCode(code): Observable<State []>{
+    return this.httpClient.get<State[]>(this.baseUrl+ `/statesByCountryCode/${code}`).pipe(
+      map(
+        response => response
+      )
+    )
+  }
 }

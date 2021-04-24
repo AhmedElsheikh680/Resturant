@@ -13,14 +13,15 @@ export class CheckOutComponent implements OnInit {
   checkoutParentGroup: FormGroup;
 
   countries: Country[] = [];
-  states: State[] = [];
+  statesFromPerson: State[] = [];
+  statesToPerson: State[] = [];
   constructor(private formChildGroup: FormBuilder,
               private stateCountryService:StateCountryServiceService) { }
 
   ngOnInit(): void {
     this.myForm();
     this.getAllCountries();
-    this.getAllStates();
+    // this.getAllStates();
   }
   myForm(){
     this.checkoutParentGroup = this.formChildGroup.group({
@@ -57,6 +58,7 @@ export class CheckOutComponent implements OnInit {
     if((<HTMLInputElement>event.target).checked){
       this.checkoutParentGroup.controls.toPerson
         .setValue(this.checkoutParentGroup.controls.fromPerson.value)
+      this.statesFromPerson = this.statesToPerson;
     }else {
       this.checkoutParentGroup.controls.toPerson.reset();
     }
@@ -70,12 +72,27 @@ export class CheckOutComponent implements OnInit {
       }
     )
   }
-
-  getAllStates(){
-    this.stateCountryService.getAllStates().subscribe(
+  getStatesByCategoryCode(typeForm){
+    const code = this.checkoutParentGroup.get(`${typeForm}.country`).value;
+    this.stateCountryService.getStatesByCountryCode(code).subscribe(
       data => {
-        this.states = data;
+        if(typeForm === 'fromPerson'){
+          this.statesFromPerson = data;
+        }else {
+          this.statesToPerson = data;
+        }
+        this.checkoutParentGroup.get(`${typeForm}.state`).setValue(data[0]);
       }
     )
   }
+
+  // getAllStates(){
+  //   this.stateCountryService.getAllStates().subscribe(
+  //     data => {
+  //       this.states = data;
+  //     }
+  //   )
+  // }
+
+
 }

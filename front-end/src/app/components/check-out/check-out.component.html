@@ -22,14 +22,14 @@
   <div formGroupName="fromPerson" class="col-md-8 myorder data">
     <label class="myla">From : </label>
     <div class="input-group mb-3">
-      <select formControlName="country" class="form-select">
-        <option *ngFor="let tem of countries" >{{ tem.name}}</option>
+      <select (change)="getStatesByCategoryCode('fromPerson')" formControlName="country" class="form-select">
+        <option [ngValue]="tem.code" *ngFor="let tem of countries" >{{ tem.name}}</option>
       </select>
       <label class="input-group-text myin" for="inputGroupSelect02">Country</label>
     </div>
     <div class="input-group mb-3">
-      <select formControlName="state" class="form-select" id="inputGroupSelect02">
-        <option *ngFor="let tem of states">{{ tem.name}}</option>
+      <select  formControlName="state" class="form-select" id="inputGroupSelect02">
+        <option [ngValue]="tem" *ngFor="let tem of statesFromPerson">{{ tem.name}}</option>
 
       </select>
       <label class="input-group-text myin" for="inputGroupSelect02">State</label>
@@ -53,15 +53,15 @@
   <div formGroupName="toPerson" class="col-md-8 myorder data">
     <label class="myla">To :</label>
     <div class="input-group mb-3">
-      <select formControlName="country" class="form-select">
-        <option *ngFor="let tem of countries">{{tem.name}}</option>
+      <select (change)="getStatesByCategoryCode('toPerson')" formControlName="country" class="form-select">
+        <option [ngValue]="tem.code" *ngFor="let tem of countries">{{tem.name}}</option>
 
       </select>
       <label class="input-group-text myin" for="inputGroupSelect02">Country</label>
     </div>
     <div class="input-group mb-3">
       <select formControlName="state" class="form-select" >
-        <option *ngFor="let tem of states">{{ tem.name}}</option>
+        <option [ngValue]="tem" *ngFor="let tem of statesToPerson">{{ tem.name}}</option>
 
       </select>
       <label class="input-group-text myin" >State</label>

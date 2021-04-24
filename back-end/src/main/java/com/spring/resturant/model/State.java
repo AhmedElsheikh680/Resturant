@@ -1,5 +1,6 @@
 package com.spring.resturant.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,6 +18,7 @@ public class State extends PublicData{
 
 
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "country_id")
     private Country country;

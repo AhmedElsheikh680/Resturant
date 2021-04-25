@@ -50,19 +50,43 @@ export class CheckOutComponent implements OnInit {
         ])
       }),
       fromPerson: this.formChildGroup.group({
-        country: [''],
-        state: [''],
-        zipCode: ['']
+        country: new FormControl('', [
+          Validators.required
+        ]),
+        state: new FormControl('',[
+          Validators.required
+        ]),
+        zipCode: new FormControl('',[
+          Validators.required,
+          Validators.minLength(2),
+          SpaceValidator.onlyContainsSpace
+        ])
       }),
       toPerson: this.formChildGroup.group({
-        country: [''],
-        state: [''],
-        zipCode: ['']
+        country: new FormControl('', [
+          Validators.required
+        ]),
+        state: new FormControl('', [
+          Validators.required
+        ]),
+        zipCode: new FormControl('', [
+          Validators.required,
+          Validators.minLength(2),
+          SpaceValidator.onlyContainsSpace
+        ])
       }),
       creditCard: this.formChildGroup.group({
-        cardType: [''],
-        cardNumber: [''],
-        code: ['']
+        cardType: new FormControl('',[
+          Validators.required
+        ]),
+        cardNumber: new FormControl('', [
+          Validators.required,
+          Validators.pattern('[0-9]{16}')
+        ]),
+        code: new FormControl('', [
+          Validators.required,
+          Validators.pattern('[0-9]{3}')
+        ])
       })
     })
   }
@@ -74,6 +98,34 @@ export class CheckOutComponent implements OnInit {
   }
   get phone(){
     return this.checkoutParentGroup.get('data.phone')
+  }
+  get fromCountry(){
+    return this.checkoutParentGroup.get('fromPerson.country')
+  }
+  get fromState(){
+    return this.checkoutParentGroup.get('fromPerson.state')
+  }
+  get fromZipCode(){
+    return this.checkoutParentGroup.get('fromPerson.zipCode')
+  }
+
+  get toCountry(){
+    return this.checkoutParentGroup.get('toPerson.country')
+  }
+  get toState(){
+    return this.checkoutParentGroup.get('toPerson.state')
+  }
+  get toZipCode(){
+    return this.checkoutParentGroup.get('toPerson.zipCode')
+  }
+  get cardType(){
+    return this.checkoutParentGroup.get('creditCard.cardType')
+  }
+  get cardNumber(){
+    return this.checkoutParentGroup.get('creditCard.cardNumber');
+  }
+  get code(){
+    return this.checkoutParentGroup.get('creditCard.code')
   }
   done() {
     if(this.checkoutParentGroup.invalid){

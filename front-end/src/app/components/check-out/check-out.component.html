@@ -60,16 +60,36 @@
       </select>
       <label class="input-group-text myin" for="inputGroupSelect02">Country</label>
     </div>
+    <div *ngIf="fromCountry.invalid && (fromCountry.dirty || fromCountry.touched)">
+      <div *ngIf="fromCountry.errors.required" class="alert alert-danger" role="alert">
+        Country Is Required
+      </div>
+    </div>
     <div class="input-group mb-3">
       <select  formControlName="state" class="form-select" id="inputGroupSelect02">
         <option [ngValue]="tem" *ngFor="let tem of statesFromPerson">{{ tem.name}}</option>
 
       </select>
       <label class="input-group-text myin" for="inputGroupSelect02">State</label>
+
     </div>
+    <div *ngIf="fromState.invalid && (fromState.dirty || fromState.touched)">
+      <div *ngIf="fromState.errors.required" class="alert alert-danger" role="alert">
+        State Is Required
+      </div>
+    </div>
+
     <div class="input-group mb-3">
       <span  class="input-group-text">Zip Code</span>
       <input formControlName="zipCode" type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+    </div>
+    <div *ngIf="fromZipCode.invalid && (fromZipCode.dirty || fromZipCode.touched)">
+      <div  *ngIf="fromZipCode.errors.required || fromZipCode.errors.noSpace" class="alert alert-danger" role="alert">
+        zipCode Is Required
+      </div>
+      <div *ngIf="fromZipCode.errors.minlength" class="alert alert-danger" role="alert">
+        zipCode Must Be At Least 2 Digits
+      </div>
     </div>
 
 
@@ -92,6 +112,11 @@
       </select>
       <label class="input-group-text myin" for="inputGroupSelect02">Country</label>
     </div>
+    <div *ngIf="toCountry.invalid && (toCountry.dirty || toCountry.touched)">
+      <div *ngIf="toCountry.errors.required" class="alert alert-danger" role="alert">
+        Country Is Required
+      </div>
+    </div>
     <div class="input-group mb-3">
       <select formControlName="state" class="form-select" >
         <option [ngValue]="tem" *ngFor="let tem of statesToPerson">{{ tem.name}}</option>
@@ -99,9 +124,24 @@
       </select>
       <label class="input-group-text myin" >State</label>
     </div>
+    <div *ngIf="toState.invalid && (toState.dirty || toState.touched)">
+      <div *ngIf="toState.errors.required" class="alert alert-danger" role="alert">
+        State Is Required
+      </div>
+    </div>
+
+
     <div class="input-group mb-3">
       <span class="input-group-text" id="basic-addon3">Zip Code</span>
       <input formControlName="zipCode" type="text" class="form-control" aria-describedby="basic-addon3">
+    </div>
+    <div *ngIf="toZipCode.invalid && (toZipCode.dirty || toZipCode.touched)">
+      <div  *ngIf="toZipCode.errors.required || toZipCode.errors.noSpace" class="alert alert-danger" role="alert">
+        zipCode Is Required
+      </div>
+      <div *ngIf="toZipCode.errors.minlength" class="alert alert-danger" role="alert">
+        zipCode Must Be At Least 2 Digits
+      </div>
     </div>
 
   </div>
@@ -117,16 +157,37 @@
     </select>
     <label class="input-group-text myin" for="inputGroupSelect02">Type</label>
   </div>
+  <div *ngIf="cardType.invalid && (cardType.dirty || cardType.touched)">
+    <div *ngIf="cardType.errors.required" class="alert alert-danger" role="alert">
+      Card Type Is Required
+    </div>
+  </div>
 
   <div class="input-group mb-3">
     <span class="input-group-text" >Card Number</span>
     <input formControlName="cardNumber" type="text" class="form-control" aria-describedby="basic-addon3">
+  </div>
+  <div *ngIf="cardNumber.invalid && (cardNumber.dirty || cardNumber.touched)">
+    <div  *ngIf="cardNumber.errors.required" class="alert alert-danger" role="alert">
+      Card Number Is Required
+    </div>
+    <div *ngIf="cardNumber.errors.pattern" class="alert alert-danger" role="alert">
+      Card Number Must Be 16 Digits Long
+    </div>
   </div>
 
   <div class="input-group mb-3">
     <label class="input-group-text myin" for="inputGroupSelect02">Code</label>
     <input formControlName="code"  type="text" class="form-control" aria-describedby="basic-addon3">
 
+  </div>
+  <div *ngIf="code.invalid && (code.dirty || code.touched)" >
+    <div *ngIf="code.errors.required" class="alert alert-danger" role="alert">
+     Security Code Is Required
+    </div>
+    <div *ngIf="code.errors.pattern" class="alert alert-danger" role="alert">
+      Security Code Must Be 3 Digits Long
+    </div>
   </div>
 </div>
   <div class="check-out">

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Country} from '../../model/country';
 import {State} from '../../model/state';
 import {StateCountryServiceService} from '../../services/state-country-service.service';
+import {SpaceValidator} from '../../model/space-validator';
 
 @Component({
   selector: 'app-check-out',
@@ -26,9 +27,21 @@ export class CheckOutComponent implements OnInit {
   myForm(){
     this.checkoutParentGroup = this.formChildGroup.group({
       data: this.formChildGroup.group({
-        fullName: [''],
-        gmail: [''],
-        phone: ['']
+        fullName: new FormControl('', [
+          Validators.required,
+          SpaceValidator.onlyContainsSpace,
+          Validators.minLength(5)
+        ]),
+        gmail: new FormControl('', [
+          Validators.required,
+          Validators.pattern('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$')
+        ]),
+        phone: new FormControl('', [
+          Validators.required,
+          Validators.minLength(11),
+          Validators.maxLength(11),
+          Validators.pattern('^[0-9]*$')
+        ])
       }),
       fromPerson: this.formChildGroup.group({
         country: [''],
@@ -47,7 +60,19 @@ export class CheckOutComponent implements OnInit {
       })
     })
   }
+  get fullName(){
+    return this.checkoutParentGroup.get('data.fullName')
+  }
+  get email(){
+    return this.checkoutParentGroup.get('data.gmail')
+  }
+  get phone(){
+    return this.checkoutParentGroup.get('data.phone')
+  }
   done() {
+    if(this.checkoutParentGroup.invalid){
+      this.checkoutParentGroup.markAllAsTouched()
+    }
     console.log(this.checkoutParentGroup.get('data').value);
     console.log(this.checkoutParentGroup.get('fromPerson').value);
     console.log(this.checkoutParentGroup.get('toPerson').value);

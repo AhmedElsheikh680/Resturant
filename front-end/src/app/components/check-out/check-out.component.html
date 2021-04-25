@@ -130,8 +130,8 @@
   </div>
 </div>
   <div class="check-out">
-    <div class="size">Total Order : </div>
-    <div class="totalprice">Total Price : </div>
+    <div class="size">Total Order : {{totalSize}}</div>
+    <div class="totalprice">Total Price : {{ totalPrice | currency: 'USD'}}</div>
     <button type="submit" class="btn btn-primary done">Done</button>
   </div>
 </form>

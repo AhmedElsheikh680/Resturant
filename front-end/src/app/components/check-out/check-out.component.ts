@@ -4,6 +4,7 @@ import {Country} from '../../model/country';
 import {State} from '../../model/state';
 import {StateCountryServiceService} from '../../services/state-country-service.service';
 import {SpaceValidator} from '../../model/space-validator';
+import {CartServiceService} from '../../services/cart-service.service';
 
 @Component({
   selector: 'app-check-out',
@@ -16,13 +17,18 @@ export class CheckOutComponent implements OnInit {
   countries: Country[] = [];
   statesFromPerson: State[] = [];
   statesToPerson: State[] = [];
+
+  totalSize: number = 0;
+  totalPrice: number = 0;
   constructor(private formChildGroup: FormBuilder,
-              private stateCountryService:StateCountryServiceService) { }
+              private stateCountryService:StateCountryServiceService,
+              private cartService: CartServiceService) { }
 
   ngOnInit(): void {
     this.myForm();
     this.getAllCountries();
     // this.getAllStates();
+    this.getTotals()
   }
   myForm(){
     this.checkoutParentGroup = this.formChildGroup.group({
@@ -119,5 +125,17 @@ export class CheckOutComponent implements OnInit {
   //   )
   // }
 
+  getTotals(){
+    this.cartService.totalOrders.subscribe(
+      data => {
+        this.totalSize = data
+      }
+    )
+    this.cartService.totalPrice.subscribe(
+      data => {
+        this.totalPrice = data
+      }
+    )
+  }
 
 }

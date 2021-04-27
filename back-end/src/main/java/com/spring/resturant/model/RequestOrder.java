@@ -4,9 +4,8 @@ package com.spring.resturant.model;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "request_order")
@@ -27,5 +26,19 @@ public class RequestOrder extends CategoryOrder{
     @Column(name = "total_quantity")
     private int totalQuantity;
 
+    @OneToMany(mappedBy = "requestOrder",  cascade = CascadeType.ALL)
+    private Set<Item> items;
+
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    private Client client;
+
+    @OneToOne
+    @JoinColumn(name = "from_address_id", referencedColumnName = "id")
+    private Address fromAddress;
+
+    @OneToOne
+    @JoinColumn(name = "to_address_id", referencedColumnName = "id")
+    private Address toAddress;
 
 }

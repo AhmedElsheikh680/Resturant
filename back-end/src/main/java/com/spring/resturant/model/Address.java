@@ -2,9 +2,8 @@ package com.spring.resturant.model;
 
 import java.util.Date;
 
-public class Address {
+public class Address extends CategoryOrder{
 
-    private long id;
 
     private String country;
 
@@ -12,7 +11,5 @@ public class Address {
 
     private String zipCode;
 
-    private Date dateCreated;
 
-    private Date dateUpdated;
 }

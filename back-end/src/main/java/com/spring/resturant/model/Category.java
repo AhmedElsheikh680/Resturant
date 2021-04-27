@@ -16,7 +16,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table(name = "category")
-public class Category  extends CategoryOrder{
+public class Category  extends PublicData{
 
     @Column(name = "category_logo")
     private String logo;

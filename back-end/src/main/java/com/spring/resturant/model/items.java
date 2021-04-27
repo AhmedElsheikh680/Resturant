@@ -1,10 +1,8 @@
 package com.spring.resturant.model;
 
-import java.util.Date;
 
-public class items {
 
-    private long id;
+public class items extends BaseEntity{
 
     private String img;
 
@@ -12,7 +10,5 @@ public class items {
 
     private int quantity;
 
-    private Date dateCreeated;
 
-    private Date dateUpdated;
 }

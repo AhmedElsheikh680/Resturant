@@ -2,6 +2,7 @@ package com.spring.resturant.service;
 
 import com.spring.resturant.dto.PurchasesRequest;
 import com.spring.resturant.dto.PurchasesResponse;
+import com.spring.resturant.model.Item;
 import com.spring.resturant.model.RequestOrder;
 import com.spring.resturant.repo.ClientRepo;
 import lombok.RequiredArgsConstructor;
@@ -20,22 +21,29 @@ public class PurchasesServiceImpl implements PurchasesService{
     @Override
     public PurchasesResponse addRequestOrder(PurchasesRequest purchasesRequest) {
 
-
+        //#1
         RequestOrder requestOrder  = purchasesRequest.getRequestOrder();
 
+        //#2
         String myCode = getCode();
         requestOrder.setCode(myCode);
 
-        requestOrder.setItems(purchasesRequest.getItems());
-        purchasesRequest.getItems().forEach(item -> item.setRequestOrder(requestOrder));
+        //#3
+//        requestOrder.setItems(purchasesRequest.getItems());
+//        purchasesRequest.getItems().forEach(item -> item.setRequestOrder(requestOrder));
+        Set<Item> items = purchasesRequest.getItems();
+        items.forEach(item -> requestOrder.addItem(item));
 
+        //#4
         requestOrder.setFromAddress(purchasesRequest.getFromAddress());
         requestOrder.setToAddress(purchasesRequest.getToAdress());
 
-        requestOrder.setClient(purchasesRequest.getClient());
-        Set<RequestOrder> requestOrders = new HashSet<>();
-        requestOrders.add(requestOrder);
-        purchasesRequest.getClient().setRequestOrders(requestOrders);
+        //#5
+//        requestOrder.setClient(purchasesRequest.getClient());
+//        Set<RequestOrder> requestOrders = new HashSet<>();
+//        requestOrders.add(requestOrder);
+//        purchasesRequest.getClient().setRequestOrders(requestOrders);
+        purchasesRequest.getClient().addRequestOrder(requestOrder);
 
 
         clientRepo.save(purchasesRequest.getClient());

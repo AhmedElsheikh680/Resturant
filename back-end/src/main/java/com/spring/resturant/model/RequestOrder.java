@@ -43,4 +43,8 @@ public class RequestOrder extends CategoryOrder{
     @JoinColumn(name = "to_address_id", referencedColumnName = "id")
     private Address toAddress = new Address();
 
+    public void addItem(Item item){
+        items.add(item);
+        item.setRequestOrder(this);
+    }
 }

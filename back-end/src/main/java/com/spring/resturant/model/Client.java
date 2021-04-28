@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -20,7 +21,7 @@ public class Client extends PublicData{
     private String phoneNumber;
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
-    private Set<RequestOrder> requestOrders;
+    private Set<RequestOrder> requestOrders = new HashSet<>();
 
 
 }

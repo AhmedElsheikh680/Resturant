@@ -21,7 +21,7 @@ public class Item extends BaseEntity{
     @Column(name = "quantity")
     private int quantity;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="request_order_id")
     private RequestOrder requestOrder;
 

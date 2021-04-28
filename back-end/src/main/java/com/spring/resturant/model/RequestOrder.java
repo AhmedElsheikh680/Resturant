@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -18,6 +19,7 @@ public class RequestOrder extends CategoryOrder{
     private String code;
 
     @Column(name = "note")
+    @Lob
     private String note;
 
     @Column(name = "total_price")
@@ -27,18 +29,18 @@ public class RequestOrder extends CategoryOrder{
     private int totalQuantity;
 
     @OneToMany(mappedBy = "requestOrder",  cascade = CascadeType.ALL)
-    private Set<Item> items;
+    private Set<Item> items = new HashSet<>();
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "client_id")
-    private Client client;
+    private Client client = new Client();
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "from_address_id", referencedColumnName = "id")
-    private Address fromAddress;
+    private Address fromAddress = new Address();
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "to_address_id", referencedColumnName = "id")
-    private Address toAddress;
+    private Address toAddress = new Address();
 
 }

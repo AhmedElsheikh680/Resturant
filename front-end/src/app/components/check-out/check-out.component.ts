@@ -5,6 +5,14 @@ import {State} from '../../model/state';
 import {StateCountryServiceService} from '../../services/state-country-service.service';
 import {SpaceValidator} from '../../model/space-validator';
 import {CartServiceService} from '../../services/cart-service.service';
+import {Client} from '../../model/client';
+import {Address} from '../../model/address';
+import {RequestOrder} from '../../model/request-order';
+import {Item} from '../../model/item';
+import {CartOrder} from '../../model/cart-order';
+import {PurchaseRequest} from '../../model/purchase-request';
+import {PurchaseServiceService} from '../../services/purchase-service.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-check-out',
@@ -22,7 +30,9 @@ export class CheckOutComponent implements OnInit {
   totalPrice: number = 0;
   constructor(private formChildGroup: FormBuilder,
               private stateCountryService:StateCountryServiceService,
-              private cartService: CartServiceService) { }
+              private cartService: CartServiceService,
+              private purchaseService: PurchaseServiceService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.myForm();
@@ -130,11 +140,66 @@ export class CheckOutComponent implements OnInit {
   done() {
     if(this.checkoutParentGroup.invalid){
       this.checkoutParentGroup.markAllAsTouched()
+    }else{
+      // #1
+      let client: Client = new Client();
+      client.name = this.checkoutParentGroup.controls['data'].value.fullName;
+      client.email = this.checkoutParentGroup.controls['data'].value.gmail;
+      client.phoneNumber = this.checkoutParentGroup.controls['data'].value.phone;
+
+      // #2
+      let fromAddress: Address = this.checkoutParentGroup.controls['fromPerson'].value;
+      fromAddress.state = fromAddress.state['name'];
+      let toAddress: Address = this.checkoutParentGroup.controls['toPerson'].value;
+      toAddress.state = toAddress.state['name'];
+
+      // #3
+      let requestOrder: RequestOrder = new RequestOrder();
+      requestOrder.totalQuantity = this.totalSize;
+      requestOrder.totalPrice = this.totalPrice;
+
+      // #4
+      let items: Item [] = [];
+      let cartOrders: CartOrder[] = this.cartService.orders;
+      // for(let i=0; i<cartOrders.length; i++){
+      //   items[i] = new Item(cartOrders[i]);
+      // }
+      items = cartOrders.map(order => new Item(order));
+
+      // #5
+      let purchaseRequest: PurchaseRequest = new PurchaseRequest();
+      purchaseRequest.client = client;
+      purchaseRequest.fromAddress = fromAddress;
+      purchaseRequest.toAddress = toAddress;
+      purchaseRequest.requestOrder = requestOrder;
+      purchaseRequest.items = items;
+
+      // #6
+      this.purchaseService.saveOrder(purchaseRequest).subscribe({
+        next: response => {
+          alert("Your Name: "+ response.name + "\n Your Code: "+ response.code);
+          this.clean();
+        },error: error => {
+          console.log("Error "+ error.message)
+        }
+      })
+
     }
-    console.log(this.checkoutParentGroup.get('data').value);
-    console.log(this.checkoutParentGroup.get('fromPerson').value);
-    console.log(this.checkoutParentGroup.get('toPerson').value);
-    console.log(this.checkoutParentGroup.get('creditCard').value);
+
+
+
+    // console.log(this.checkoutParentGroup.get('data').value);
+    // console.log(this.checkoutParentGroup.get('fromPerson').value);
+    // console.log(this.checkoutParentGroup.get('toPerson').value);
+    // console.log(this.checkoutParentGroup.get('creditCard').value);
+  }
+  clean(){
+    this.cartService.orders = [];
+    this.cartService.totalOrders.next(0);
+    this.cartService.totalPrice.next(0);
+    this.checkoutParentGroup.reset();
+    this.router.navigateByUrl("/orders");
+
   }
 
   similarGroup(event: Event) {

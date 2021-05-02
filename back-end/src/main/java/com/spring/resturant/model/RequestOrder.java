@@ -2,15 +2,20 @@ package com.spring.resturant.model;
 
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "request_order")
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
 public class RequestOrder extends CategoryOrder{
 
@@ -18,9 +23,9 @@ public class RequestOrder extends CategoryOrder{
     @Column(name = "code")
     private String code;
 
-    @Column(name = "note")
-    @Lob
-    private String note;
+//    @Column(name = "note")
+//    @Lob
+//    private String note;
 
     @Column(name = "total_price")
     private int totalPrice;
@@ -29,9 +34,9 @@ public class RequestOrder extends CategoryOrder{
     private int totalQuantity;
 
     @OneToMany(mappedBy = "requestOrder",  cascade = CascadeType.ALL)
-    private Set<Item> items = new HashSet<>();
+    private List<Item> items = new ArrayList<>();
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "client_id")
     private Client client = new Client();
 

@@ -22,7 +22,7 @@ public class Address extends CategoryOrder{
     @Column(name = "zip_code")
     private String zipCode;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @PrimaryKeyJoinColumn
     private RequestOrder requestOrder;
 

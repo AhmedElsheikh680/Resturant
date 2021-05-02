@@ -9,17 +9,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class PurchasesRequest {
 
     private RequestOrder requestOrder;
     private Client client;
-    private Set<Item> items = new HashSet<>();
+    private List<Item> items;
     private Address fromAddress;
-    private Address toAdress;
+    private Address toAddress;
 
 }

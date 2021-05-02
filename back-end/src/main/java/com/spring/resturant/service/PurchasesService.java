@@ -5,5 +5,5 @@ import com.spring.resturant.dto.PurchasesResponse;
 
 public interface PurchasesService {
 
-    PurchasesResponse addRequestOrder(PurchasesRequest purchasesRequest);
+    public PurchasesResponse addRequestOrder(PurchasesRequest purchasesRequest);
 }

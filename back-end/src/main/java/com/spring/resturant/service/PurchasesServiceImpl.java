@@ -7,18 +7,19 @@ import com.spring.resturant.model.RequestOrder;
 import com.spring.resturant.repo.ClientRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
 @Service
-@Transactional
 @RequiredArgsConstructor
 public class PurchasesServiceImpl implements PurchasesService{
     private final ClientRepo clientRepo;
+
     @Override
+    @Transactional
     public PurchasesResponse addRequestOrder(PurchasesRequest purchasesRequest) {
 
         //#1
@@ -31,12 +32,12 @@ public class PurchasesServiceImpl implements PurchasesService{
         //#3
 //        requestOrder.setItems(purchasesRequest.getItems());
 //        purchasesRequest.getItems().forEach(item -> item.setRequestOrder(requestOrder));
-        Set<Item> items = purchasesRequest.getItems();
+        List<Item> items = purchasesRequest.getItems();
         items.forEach(item -> requestOrder.addItem(item));
 
         //#4
         requestOrder.setFromAddress(purchasesRequest.getFromAddress());
-        requestOrder.setToAddress(purchasesRequest.getToAdress());
+        requestOrder.setToAddress(purchasesRequest.getToAddress());
 
         //#5
 //        requestOrder.setClient(purchasesRequest.getClient());

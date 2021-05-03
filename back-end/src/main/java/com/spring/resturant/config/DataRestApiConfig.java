@@ -2,6 +2,7 @@ package com.spring.resturant.config;
 
 import com.spring.resturant.model.Category;
 import com.spring.resturant.model.Order;
+import com.spring.resturant.model.User;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
@@ -15,7 +16,7 @@ public class DataRestApiConfig implements RepositoryRestConfigurer {
         // Disable Http Methods For Category, Order : POST, PUT, DELETE
         disableHttpMethods(Category.class, config, preventMethod);
         disableHttpMethods(Order.class, config, preventMethod);
-
+        disableHttpMethods(User.class, config, preventMethod);
 
 //        config.getExposureConfiguration()
 //                .forDomainType(Category.class)

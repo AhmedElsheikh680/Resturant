@@ -2,12 +2,12 @@ package com.spring.resturant.controller;
 
 import com.spring.resturant.security.jwt.JwtAuthenticationFilter;
 import com.spring.resturant.security.jwt.JwtLogin;
+import com.spring.resturant.security.jwt.LoginResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+
+@CrossOrigin("http://localhost:4200")
 @RestController
 @RequestMapping("")
 public class LoginController {
@@ -19,9 +19,9 @@ public class LoginController {
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
     }
 
-    // http://localhost:8080/login
+    // http://localhost:8080/signin
     @PostMapping("/signin")
-    public String login(@RequestBody JwtLogin jwtLogin){
+    public LoginResponse login(@RequestBody JwtLogin jwtLogin){
         return jwtAuthenticationFilter.login(jwtLogin);
     }
 }

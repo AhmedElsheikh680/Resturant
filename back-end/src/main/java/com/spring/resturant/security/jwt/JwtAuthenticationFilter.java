@@ -34,11 +34,11 @@ public class JwtAuthenticationFilter {
                 .sign(HMAC512(JwtProperties.SECRET.getBytes()));
         return token;
     }
-    public String login(JwtLogin jwtLogin) {
+    public LoginResponse login(JwtLogin jwtLogin) {
         Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(jwtLogin.getEmail(),
                 jwtLogin.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authenticate);
         String token = generateToken(authenticate);
-        return token;
+        return new LoginResponse(jwtLogin.getEmail(), token);
     }
 }

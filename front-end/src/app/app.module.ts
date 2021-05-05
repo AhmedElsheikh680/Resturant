@@ -14,6 +14,7 @@ import { CartStatusComponent } from './components/cart-status/cart-status.compon
 import {PurchasesComponent} from './components/purchases/purchases.component';
 import { CheckOutComponent } from './components/check-out/check-out.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import { LoginComponent } from './components/login/login.component';
 //http://localhost:4200/
 const routes: Routes = [
   //http://localhost:4200/category
@@ -37,6 +38,8 @@ const routes: Routes = [
   //http://localhost:4200/checkout
   { path: 'checkout', component:  CheckOutComponent },
 
+  //http://localhost:4200/login
+  { path: 'login', component: LoginComponent },
 
   //http://localhost:4200/
   { path: '', redirectTo: '/orders', pathMatch: 'full'},
@@ -55,7 +58,8 @@ const routes: Routes = [
     OrderDetailsComponent,
     CartStatusComponent,
     PurchasesComponent,
-    CheckOutComponent
+    CheckOutComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

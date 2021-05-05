@@ -20,7 +20,7 @@ public class LoginController {
     }
 
     // http://localhost:8080/login
-    @PostMapping("/login")
+    @PostMapping("/signin")
     public String login(@RequestBody JwtLogin jwtLogin){
         return jwtAuthenticationFilter.login(jwtLogin);
     }

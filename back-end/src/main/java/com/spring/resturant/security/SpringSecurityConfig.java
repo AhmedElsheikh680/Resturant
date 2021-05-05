@@ -1,6 +1,8 @@
 package com.spring.resturant.security;
 
 
+import com.spring.resturant.repo.UserRepo;
+import com.spring.resturant.security.jwt.JwtAuthorizationFilter;
 import com.spring.resturant.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -22,6 +24,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserService userService;
+    private final UserRepo userRepo;
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(authenticationProvider());
@@ -33,6 +36,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
+                .addFilter(new JwtAuthorizationFilter(authenticationManager(), userRepo))
                 .authorizeRequests()
 //                .anyRequest().permitAll()
 //                .antMatchers("/me/admin").hasRole("admin")

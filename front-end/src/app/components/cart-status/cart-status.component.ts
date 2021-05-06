@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {CartServiceService} from '../../services/cart-service.service';
+import {AuthenticationServiceService} from '../../services/security/authentication-service.service';
 
 @Component({
   selector: 'app-cart-status',
@@ -10,7 +11,8 @@ export class CartStatusComponent implements OnInit {
 
   orderSize: number = 0;
   orderPrice: number = 0;
-  constructor(private cartService: CartServiceService) { }
+  constructor(private cartService: CartServiceService,
+              private authenticationService: AuthenticationServiceService) { }
 
   ngOnInit(): void {
     this.getCartStatus()
@@ -26,6 +28,9 @@ export class CartStatusComponent implements OnInit {
         this.orderPrice = data
       }
     )
+  }
+  isUserLogin(){
+    return this.authenticationService.isLogin();
   }
 
 }

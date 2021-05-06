@@ -18,6 +18,7 @@ export class AuthenticationServiceService {
     return this.httpClient.post<any>(this.baseUrl+`/signin`, { email, password}).pipe(
       map(
         response => {
+          sessionStorage.setItem("token",   `Bearer ${response.token}`)
           return response
         }
       )

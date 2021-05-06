@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { OrderItemsComponent } from './components/order-items/order-items.component';
 import { CategoryItemsComponent } from './components/category-items/category-items.component';
 import {RouterModule, Routes} from '@angular/router';
@@ -16,6 +16,7 @@ import { CheckOutComponent } from './components/check-out/check-out.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
+import {HttpIntercepterBaseAuthService} from './services/security/http-intercepter-base-auth.service';
 //http://localhost:4200/
 const routes: Routes = [
   //http://localhost:4200/category
@@ -73,7 +74,9 @@ const routes: Routes = [
     NgbPaginationModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: HttpIntercepterBaseAuthService, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

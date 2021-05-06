@@ -14,11 +14,10 @@ export class OrderServiceService {
   constructor(private httpClient: HttpClient) { }
 
   getOrders(page, size): Observable<Order[]> {
-    let header = new HttpHeaders({
-      Authorization: sessionStorage.getItem('token').toString()
-    })
-    alert(sessionStorage.getItem('token').toString())
-    return this.httpClient.get<Order[]>(this.baseUrl+`/orders?page=${page}&size=${size}`,{headers: header}).pipe(
+    // let header = new HttpHeaders({
+    //   Authorization: sessionStorage.getItem('token').toString()
+    // })
+    return this.httpClient.get<Order[]>(this.baseUrl+`/orders?page=${page}&size=${size}`).pipe(
       map(
         response => response
       )

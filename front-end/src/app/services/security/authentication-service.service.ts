@@ -12,6 +12,7 @@ export class AuthenticationServiceService {
 
   constructor(private httpClient: HttpClient) { }
 
+  //login
   executeAuthentication(email, password): Observable<any>{
 
     return this.httpClient.post<any>(this.baseUrl+`/signin`, { email, password}).pipe(
@@ -22,4 +23,14 @@ export class AuthenticationServiceService {
       )
     )
   }
+
+  //signup
+  createAccountUser(email, password): Observable<any>{
+    return  this.httpClient.post<any>(this.baseUrl+`/signup`, { email, password}).pipe(map(
+      response => {
+        return response
+      }
+    ))
+  }
+
 }

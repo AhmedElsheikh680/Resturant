@@ -9,13 +9,13 @@
 # General
 --------------------------------------------------------------*/
 html {
-  height: 100% !important;
+  height: 100% ;
 }
 body
 {
   font-family: "Open Sans", sans-serif;
   color: #272829;
-  height: 100% !important;
+  height: 100%;
 }
 
 a {
@@ -1219,18 +1219,18 @@ img {
   color: aliceblue;
 }
 /* login wi signup */
-html,body{
-  background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 100% !important;
-  font-family: 'Numans', sans-serif;
-}
+/*html,body{*/
+/*  background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');*/
+/*  background-size: cover;*/
+/*  background-repeat: no-repeat;*/
+/*  !*height: 100% !important;*!*/
+/*  font-family: 'Numans', sans-serif;*/
+/*}*/
 
-.container{
-  height: 100% !important;
-  align-content: center;
-}
+/*.container{*/
+/*  height: 100% !important;*/
+/*  align-content: center;*/
+/*}*/
 
 
 

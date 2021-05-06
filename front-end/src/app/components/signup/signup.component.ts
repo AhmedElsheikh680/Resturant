@@ -46,7 +46,8 @@ export class SignupComponent implements OnInit {
   }
    signup() {
     if(this.parentFromGroup.invalid){
-      this.parentFromGroup.markAllAsTouched()
+      this.parentFromGroup.markAllAsTouched();
+      return;
     }else {
       // alert(this.parentFromGroup.controls['user'].value.email);
       // alert(this.parentFromGroup.controls['user'].value.password);

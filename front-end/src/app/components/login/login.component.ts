@@ -44,7 +44,8 @@ export class LoginComponent implements OnInit {
   }
   login() {
     if(this.parentFormGroup.invalid){
-      this.parentFormGroup.markAllAsTouched()
+      this.parentFormGroup.markAllAsTouched();
+      return;
     } else {
       // alert(this.parentFormGroup.controls['user'].value.email);
       // alert(this.parentFormGroup.controls['user'].value.password)

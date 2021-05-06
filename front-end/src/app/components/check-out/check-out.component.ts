@@ -139,7 +139,8 @@ export class CheckOutComponent implements OnInit {
   }
   done() {
     if(this.checkoutParentGroup.invalid){
-      this.checkoutParentGroup.markAllAsTouched()
+      this.checkoutParentGroup.markAllAsTouched();
+
     }else{
       // #1
       let client: Client = new Client();

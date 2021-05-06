@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
+import {CartServiceService} from '../cart-service.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ export class AuthenticationServiceService {
 
   private baseUrl = `http://localhost:8080`;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient,
+              private cartStatus: CartServiceService) { }
 
   //login
   executeAuthentication(email, password): Observable<any>{
@@ -49,6 +51,9 @@ export class AuthenticationServiceService {
             || sessionStorage.getItem("token") == null)
   }
   logout(){
+    this.cartStatus.orders = [];
+    this.cartStatus.totalOrders.next(0);
+    this.cartStatus.totalPrice.next(0);
     sessionStorage.removeItem("email");
     sessionStorage.removeItem("token");
   }

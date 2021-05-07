@@ -17,34 +17,36 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import {HttpIntercepterBaseAuthService} from './services/security/http-intercepter-base-auth.service';
+import {RouteActivatedService} from './services/activated/route-activated.service';
+import {LoginActivateService} from './services/activated/login-activate.service';
 //http://localhost:4200/
 const routes: Routes = [
   //http://localhost:4200/category
-  { path: 'category', component: OrderItemsComponent },
+  { path: 'category', component: OrderItemsComponent, canActivate: [RouteActivatedService] },
 
   //http://localhost:4200/category/{id}
-  { path: 'category/:id', component: OrderItemsComponent },
+  { path: 'category/:id', component: OrderItemsComponent, canActivate: [RouteActivatedService] },
 
   //http://localhost:4200/orders
-  { path: 'orders', component: OrderItemsComponent },
+  { path: 'orders', component: OrderItemsComponent, canActivate: [RouteActivatedService] },
 
   //http://localhost:4200/orders/keyname
-  { path: 'orders/:keyname', component: OrderItemsComponent },
+  { path: 'orders/:keyname', component: OrderItemsComponent, canActivate: [RouteActivatedService] },
 
   //http://localhost:4200/order/{id}
-  { path: 'order/:id', component: OrderDetailsComponent },
+  { path: 'order/:id', component: OrderDetailsComponent, canActivate: [RouteActivatedService] },
 
   //http://localhost:4200/purchases
-  { path: 'purchases', component: PurchasesComponent},
+  { path: 'purchases', component: PurchasesComponent, canActivate: [RouteActivatedService]},
 
   //http://localhost:4200/checkout
-  { path: 'checkout', component:  CheckOutComponent },
+  { path: 'checkout', component:  CheckOutComponent, canActivate: [RouteActivatedService] },
 
   //http://localhost:4200/login
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent, canActivate: [LoginActivateService]},
 
   //http://localhost:4200/signup
-  { path: 'signup', component: SignupComponent },
+  { path: 'signup', component: SignupComponent, canActivate: [LoginActivateService] },
 
   //http://localhost:4200/
   { path: '', redirectTo: '/orders', pathMatch: 'full'},

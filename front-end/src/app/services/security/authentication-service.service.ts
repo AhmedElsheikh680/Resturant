@@ -40,7 +40,7 @@ export class AuthenticationServiceService {
   getAuthentication(){
     return sessionStorage.getItem("email")
   }
-  getToken(){
+     getToken(){
     if(this.getAuthentication()){
       return sessionStorage.getItem("token")
     }

@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {CartServiceService} from '../cart-service.service';
+import {CookieService} from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ export class AuthenticationServiceService {
   private baseUrl = `http://localhost:8080`;
 
   constructor(private httpClient: HttpClient,
-              private cartStatus: CartServiceService) { }
+              private cartStatus: CartServiceService,
+              private cookie: CookieService) { }
 
   //login
   executeAuthentication(email, password): Observable<any>{
@@ -22,6 +24,8 @@ export class AuthenticationServiceService {
         response => {
           sessionStorage.setItem("email", response.email);
           sessionStorage.setItem("token",   `Bearer ${response.token}`);
+          this.cookie.set("email", response.email);
+          this.cookie.set("token", `Bearer ${response.token}`);
           return response
         }
       )
@@ -56,6 +60,8 @@ export class AuthenticationServiceService {
     this.cartStatus.totalPrice.next(0);
     sessionStorage.removeItem("email");
     sessionStorage.removeItem("token");
+    this.cookie.delete("email");
+    this.cookie.delete("token");
   }
 
 

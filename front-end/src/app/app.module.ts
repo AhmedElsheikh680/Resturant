@@ -19,6 +19,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import {HttpIntercepterBaseAuthService} from './services/security/http-intercepter-base-auth.service';
 import {RouteActivatedService} from './services/activated/route-activated.service';
 import {LoginActivateService} from './services/activated/login-activate.service';
+import {CookieService} from 'ngx-cookie-service';
 //http://localhost:4200/
 const routes: Routes = [
   //http://localhost:4200/category
@@ -77,7 +78,8 @@ const routes: Routes = [
     ReactiveFormsModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: HttpIntercepterBaseAuthService, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: HttpIntercepterBaseAuthService, multi: true },
+    CookieService
   ],
   bootstrap: [AppComponent]
 })
